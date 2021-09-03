@@ -17,12 +17,15 @@ schema_view = get_schema_view(
       contact=openapi.Contact(email="nava2007@yandex.ru"),
    ),
    public=True,
-   permission_classes=(permissions.AllowAny,),
+   permission_classes=(permissions.IsAuthenticated,),
 )
 
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('auth/', include('djoser.urls.jwt')),
     path('swagger(.json|\.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
