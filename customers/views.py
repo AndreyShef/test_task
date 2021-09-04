@@ -10,3 +10,4 @@ class UserContactsViewSet(viewsets.ModelViewSet):
     filter_backends = (DjangoFilterBackend,)
     filterset_class = UserContactsFilter
     permission_classes = [permissions.IsAuthenticated]
+

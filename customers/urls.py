@@ -5,9 +5,6 @@ from drf_yasg import openapi
 from . import views
 
 
-router = routers.DefaultRouter()
-router.register('contacts', views.UserContactsViewSet)
-
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",
@@ -20,8 +17,12 @@ schema_view = get_schema_view(
    permission_classes=(permissions.IsAuthenticated,),
 )
 
+router = routers.DefaultRouter()
+router.register('contacts', views.UserContactsViewSet)
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('contacts', views.UserContactsViewSet),
     path('api-auth/', include('rest_framework.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
