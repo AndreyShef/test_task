@@ -21,9 +21,9 @@ from .yasg import urlpatterns as doc_urls
 urlpatterns = [
     path('', include('customers.urls')),
 
-    path('api/token/', TokenObtainPairView.as_view()),
-    path('api/token/refresh/', TokenRefreshView.as_view()),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    # path('api/token/', TokenObtainPairView.as_view()),
+    # path('api/token/refresh/', TokenRefreshView.as_view()),
+    # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 
 
     path('admin/', admin.site.urls),
