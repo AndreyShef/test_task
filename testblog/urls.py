@@ -22,7 +22,10 @@ from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('', include('customers.urls')),
-    path('registration/', views.reg, name='registry'),
+    path('first_page/', views.first_page, name='index'),
+    path('registration/', views.reg_page, name='registry'),
+    path('contacts_list/', views.reg, name='contacts'),
+    path('error/', views.reg, name='error'),
 
     # path('api/token/', TokenObtainPairView.as_view()),
     # path('api/token/refresh/', TokenRefreshView.as_view()),
