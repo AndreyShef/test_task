@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+import os
 from datetime import timedelta
 
 from .settings_new import *
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'testblog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,8 +112,8 @@ DJOSER = {
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
         # 'rest_framework.authentication.BasicAuthentication',
         # 'rest_framework.authentication.SessionAuthentication',
     ),
@@ -149,11 +150,25 @@ SIMPLE_JWT = {
     'TOKEN_TYPE_CLAIM': 'token_type',
 
     'JTI_CLAIM': 'jti',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
 
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+
+IMPORT_STRINGS = (
+    'AUTH_TOKEN_CLASSES',
+    'TOKEN_USER_CLASS',
+    'USER_AUTHENTICATION_RULE',
+)
+
+REMOVED_SETTINGS = (
+    'AUTH_HEADER_TYPE',
+    'AUTH_TOKEN_CLASS',
+    'SECRET_KEY',
+    'TOKEN_BACKEND_CLASS',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

@@ -16,15 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView, TokenVerifyView)
+
+from customers import views
 from .yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('', include('customers.urls')),
+    path('registration/', views.reg, name='registry'),
 
     # path('api/token/', TokenObtainPairView.as_view()),
     # path('api/token/refresh/', TokenRefreshView.as_view()),
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-
 
     path('admin/', admin.site.urls),
 ]

@@ -6,7 +6,7 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register(r'contacts/', views.UserContactsViewSet)
+router.register(r'contacts', views.UserContactsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
