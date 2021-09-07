@@ -157,18 +157,18 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-IMPORT_STRINGS = (
-    'AUTH_TOKEN_CLASSES',
-    'TOKEN_USER_CLASS',
-    'USER_AUTHENTICATION_RULE',
-)
-
-REMOVED_SETTINGS = (
-    'AUTH_HEADER_TYPE',
-    'AUTH_TOKEN_CLASS',
-    'SECRET_KEY',
-    'TOKEN_BACKEND_CLASS',
-)
+# IMPORT_STRINGS = (
+#     'AUTH_TOKEN_CLASSES',
+#     'TOKEN_USER_CLASS',
+#     'USER_AUTHENTICATION_RULE',
+# )
+#
+# REMOVED_SETTINGS = (
+#     'AUTH_HEADER_TYPE',
+#     'AUTH_TOKEN_CLASS',
+#     'SECRET_KEY',
+#     'TOKEN_BACKEND_CLASS',
+# )
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

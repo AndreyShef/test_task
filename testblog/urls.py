@@ -27,6 +27,7 @@ urlpatterns = [
     path('contacts_list/', views.reg, name='contacts'),
     path('error/', views.reg, name='error'),
 
+
     # path('api/token/', TokenObtainPairView.as_view()),
     # path('api/token/refresh/', TokenRefreshView.as_view()),
     # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
