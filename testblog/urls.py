@@ -20,6 +20,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshVie
 from customers import views
 from .yasg import urlpatterns as doc_urls
 
+
 urlpatterns = [
     path('', include('customers.urls')),
     path('first_page/', views.first_page, name='index'),
