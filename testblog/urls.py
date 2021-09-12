@@ -15,23 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView, TokenVerifyView)
-
+from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 from customers import views
+
 from .yasg import urlpatterns as doc_urls
 
+router = DefaultRouter()
+router.register('contacts', views.UserContactsViewSet)
 
 urlpatterns = [
-    path('', include('customers.urls')),
-    path('first_page/', views.first_page, name='index'),
-    path('registration/', views.reg_page, name='registry'),
+    path('api/', include((router.urls, 'app_name'), namespace='instance_name')),
+    # path('api-auth/', include('rest_framework.urls')),
+    # path('auth/', include('djoser.urls')),
+    # path('auth/', include('djoser.urls.authtoken')),
+    # path('auth/', include('djoser.urls.jwt')),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    # path('first_page/', views.first_page, name='index'),
+    # path('registration/', views.reg_page, name='registry'),
     path('contacts_list/', views.reg, name='contacts'),
-    path('error/', views.reg, name='error'),
-
-
-    # path('api/token/', TokenObtainPairView.as_view()),
-    # path('api/token/refresh/', TokenRefreshView.as_view()),
-    # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    # path('error/', views.reg, name='error'),
 
     path('admin/', admin.site.urls),
 ]
