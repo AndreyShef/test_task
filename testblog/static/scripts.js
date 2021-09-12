@@ -12,7 +12,7 @@ window.onload = function() {
     contactLoader.onreadystatechange = function() {
         if (contactLoader.readyState == 4) {
             if (contactLoader.status == 200) {
-                const data = JSON.parse(contactLoader.responseText);
+                data = JSON.parse(contactLoader.responseText);
                 id.value = data.id;
                 first_name.value = data.first_name;
                 last_name.value = data.last_name;
@@ -25,7 +25,7 @@ window.onload = function() {
     }
 
     function contactLoad(e) {
-        e.prevent.Default();
+        e.preventDefault();
         const url = e.target.href;
         contactLoader.open('GET', url, true);
         contactLoader.send();
