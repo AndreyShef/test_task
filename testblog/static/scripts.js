@@ -5,6 +5,8 @@ window.onload = function() {
           first_name = document.querySelector('#first_name'),
           last_name = document.querySelector('#last_name'),
           phone = document.querySelector('#phone');
+    const contactForm = document.querySelector('#contact_form');
+          
 
     const contactLoader = new XMLHttpRequest();
     contactLoader.onreadystatechange = function() {
@@ -47,7 +49,6 @@ window.onload = function() {
     }
 
 
-    const list = document.querySelector('#list');
     const contactsListLoader = new XMLHttpRequest();
     contactsListLoader.onreadystatechange = function() {
         if (contactsListLoader.readyState == 4) {
@@ -64,10 +65,14 @@ window.onload = function() {
                 s += '</ul>';
                 list.innerHTML = s;
                 links = list.querySelectorAll('ul li a.detail');
-                for(let i = 0; i < links.length; i++) {
+                for(i = 0; i < links.length; i++) {
                     links[i].addEventListener('click', contactLoad);
                 }
-            }
+                links = list.querySelectorAll('ul li a.delete');
+                for(i = 0; i < links.length; i++) {
+                    links[i].addEventListener('click', contactDelete);
+                }
+            } 
         }
     }
     function contactsListLoad() {
@@ -78,9 +83,9 @@ window.onload = function() {
 
     const contactUpdater = new XMLHttpRequest();
     contactUpdater.onreadystatechange = function() {
-        if (contactUpdater == 4) {
-            if ((contactUpdater == 200) || (contactUpdater ==201)) {
-                contactLoad();
+        if (contactUpdater.readyState == 4) {
+            if ((contactUpdater.status == 200) || (contactUpdater.status ==201)) {
+                contactsListLoad();
                 contactForm.reset();
                 id.value = '';
             } else {
@@ -89,16 +94,18 @@ window.onload = function() {
         }
     }
 
-    const contactForm = document.querySelector('#contact_form');
+    
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const vid = id.value;
+        let   url = '',
+              method = '';
         if (vid) {
-            const url = '/api/contacts/' + vid + '/';
-            const method = 'PUT';
+            url = '/api/contacts/' + vid + '/';
+            method = 'PUT';
         } else {
-            const url = '/api/contacts/';
-            const method = 'POST';
+            url = '/api/contacts/';
+            method = 'POST';
         }
         data = JSON.stringify({
             id: vid,
