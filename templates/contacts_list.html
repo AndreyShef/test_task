@@ -10,6 +10,17 @@
 <body>
     <h3>Список контактов</h3>
     <div id="list"></div>
+    <form id="contact_form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" id="id">
+        <p>Имя: <input name="first_name" id="first_name"></p>
+        <p>Фамилия: <input name="last_name" id="last_name"></p>
+        <p>Телефон: <input name="phone" id="phone"></p>
+        <p>Порядок:
+            <input type="reset" value="Очистить">
+            <input type="submit" value="Сохранить">
+        </p>
+    </form>
 
 </body>
 </html>
