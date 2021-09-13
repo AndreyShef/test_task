@@ -11,7 +11,7 @@ from .forms import RegForm
 class UserContactsViewSet(ModelViewSet):
     queryset = UserContacts.objects.all()
     serializer_class = UserContactsSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filter_fields = ['first_name', 'phone']
 
@@ -20,9 +20,9 @@ class UserContactsViewSet(ModelViewSet):
 #     return render(request, './first_page.html')
 #
 #
-# def reg_page(request):
-#     form = RegForm()
-#     return render(request, './registration.html', {'form': form})
+def reg_page(request):
+    form = RegForm()
+    return render(request, './registration.html', {'form': form})
 
 
 def reg(request):
