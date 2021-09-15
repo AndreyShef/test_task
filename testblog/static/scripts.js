@@ -28,6 +28,7 @@ window.onload = function() {
         e.preventDefault();
         const url = e.target.href;
         contactLoader.open('GET', url, true);
+        contactLoader.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         contactLoader.send();
     }
 
@@ -45,6 +46,7 @@ window.onload = function() {
         e.preventDefault();
         const url = e.target.href;
         contactDeleter.open('DELETE', url, true);
+        contactDeleter.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         contactDeleter.send();
     }
 
@@ -77,6 +79,7 @@ window.onload = function() {
     }
     function contactsListLoad() {
         contactsListLoader.open('GET', domain + '/api/contacts/', true);
+        contactsListLoader.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         contactsListLoader.send();
     }
     contactsListLoad();
@@ -115,6 +118,7 @@ window.onload = function() {
         });
         contactUpdater.open(method, domain + url, true);
         contactUpdater.setRequestHeader('Content-Type', 'application/json');
+        contactUpdater.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
         contactUpdater.send(data);
     });
 }

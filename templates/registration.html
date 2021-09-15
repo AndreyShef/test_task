@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!--    <script src="{% static 'scripts.js' %}"></script>-->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="{% static 'reg.js' %}"></script>
     <title>Registations</title>
 </head>
@@ -44,6 +45,8 @@
 
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="/">Lost password?</a></p>
+
+<div id="pass"><p><a href="{% url 'contacts' %}">Перейти к списку</a></p></div>
 
 {% endblock %}
 </body>
