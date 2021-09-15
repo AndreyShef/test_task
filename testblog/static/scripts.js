@@ -33,9 +33,11 @@ window.onload = function() {
     }
 
     const contactDeleter = new XMLHttpRequest();
+    
     contactDeleter.onreadystatechange = function() {
         if (contactDeleter.readyState == 4) {
             if (contactDeleter.status == 204) {
+                
                 contactsListLoad();
             } else {
                 window.alert(contactDeleter.statusText);
@@ -73,6 +75,7 @@ window.onload = function() {
                 links = list.querySelectorAll('ul li a.delete');
                 for(i = 0; i < links.length; i++) {
                     links[i].addEventListener('click', contactDelete);
+                   
                 }
             } 
         }
